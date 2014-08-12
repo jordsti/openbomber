@@ -18,6 +18,12 @@
 				</Compiler>
 				<Linker>
 					<Add option="-lmingw32" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add option="-lStiGame" />
 					<Add directory="../../stigame/StiGame/bin/Debug/" />
 					<Add directory="../lib" />
 				</Linker>
@@ -34,6 +40,12 @@
 				<Linker>
 					<Add option="-s" />
 					<Add option="-lmingw32" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add option="-lStiGame" />
 					<Add directory="../../stigame/StiGame/bin/Release/" />
 					<Add directory="../lib" />
 				</Linker>
@@ -64,6 +76,12 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add option="-lStiGame" />
 					<Add directory="../../stigame/StiGame/bin/Release/" />
 				</Linker>
 			</Target>
@@ -73,24 +91,31 @@
 			<Add option="-Wall" />
 			<Add directory="../../stigame/StiGame/" />
 		</Compiler>
-		<Linker>
-			<Add option="-lSDL2main" />
-			<Add option="-lSDL2" />
-			<Add option="-lSDL2_image" />
-			<Add option="-lSDL2_ttf" />
-			<Add option="-lSDL2_gfx" />
-			<Add option="-lStiGame" />
-		</Linker>
 		<Unit filename="MainMenuState.cpp" />
 		<Unit filename="MainMenuState.h" />
+		<Unit filename="MapGenerator.cpp" />
+		<Unit filename="MapGenerator.h" />
 		<Unit filename="OpenBomberStyle.cpp" />
 		<Unit filename="OpenBomberStyle.h" />
+		<Unit filename="Tile.cpp" />
+		<Unit filename="Tile.h" />
+		<Unit filename="TileMap.cpp" />
+		<Unit filename="TileMap.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
 			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
