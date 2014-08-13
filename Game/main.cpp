@@ -2,6 +2,7 @@
 #include "MainMenuState.h"
 #include "OpenBomberStyle.h"
 #include "TileMap.h"
+#include "MapGenerator.h"
 #include <iostream>
 using namespace StiGame;
 
@@ -11,14 +12,14 @@ int main(int argv, char** args)
 
     //test tile map
 
-    TileMap tmap = TileMap();
+    TileMap *tmap = MapGenerator::GenerateMap(64, 32, 4, 4);
 
-    for(int i=0; i<tmap.getHeight(); i++)
+    for(int i=0; i<tmap->getHeight(); i++)
     {
         std::cout << i << " : ";
-        for(int j=0; j<tmap.getWidth(); j++)
+        for(int j=0; j<tmap->getWidth(); j++)
         {
-            Tile *t = tmap.getTile(j, i);
+            Tile *t = tmap->getTile(j, i);
             if(t->getTileType() == TT_Normal)
             {
                 std::cout << "N\t";

@@ -62,6 +62,12 @@
 					<Add directory="/usr/include/SDL2" />
 				</Compiler>
 				<Linker>
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add option="-lStiGame" />
 					<Add directory="../../stigame/StiGame/bin/Debug/" />
 				</Linker>
 			</Target>
