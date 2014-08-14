@@ -9,6 +9,7 @@ class MapGenerator
         MapGenerator();
         virtual ~MapGenerator();
 
+        static TileMap* GenerateMap(int width, int height, int npPaths, int maxObstructions, int seed);
         static TileMap* GenerateMap(int width, int height, int nbPaths, int maxObstructions);
     protected:
     private:

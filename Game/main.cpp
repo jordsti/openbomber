@@ -12,9 +12,9 @@ int main(int argv, char** args)
 
     //test tile map
 
-    TileMap *tmap = MapGenerator::GenerateMap(64, 32, 4, 4);
+    TileMap *tmap = MapGenerator::GenerateMap(64, 32, 6, 6);
 
-    for(int i=0; i<tmap->getHeight(); i++)
+    /*for(int i=0; i<tmap->getHeight(); i++)
     {
         std::cout << i << " : ";
         for(int j=0; j<tmap->getWidth(); j++)
@@ -31,8 +31,38 @@ int main(int argv, char** args)
         }
 
         std::cout << std::endl;
+    }*/
+
+    Surface *map_sur = new Surface(tmap->getWidth()*tmap->getTileWidth(), tmap->getHeight()*tmap->getTileHeight());
+
+    Color *bg = new Color(0, 0, 0);
+    map_sur->fill(bg);
+
+    Color *c1 = new Color();
+    c1->setRGB(255, 0, 0);
+    Color *c2 = new Color();
+    c2->setRGB(0, 0, 255);
+    Rectangle *rect = new Rectangle();
+    rect->setDimension(tmap->getTileWidth(), tmap->getTileHeight());
+
+    for(int y=0; y<tmap->getHeight(); y++)
+    {
+        for(int x=0; x<tmap->getWidth(); x++)
+        {
+            Color *to_use = c2;
+            Tile *t = tmap->getTile(x, y);
+            if(t->getTileType() == TT_Block)
+            {
+                to_use = c1;
+            }
+
+            rect->setPoint(x*tmap->getTileWidth(), y*tmap->getTileHeight());
+
+            map_sur->fillRect(rect, to_use);
+        }
     }
 
+    map_sur->saveBmp("map_test.bmp");
 
     OpenBomberStyle* style = new OpenBomberStyle();
 

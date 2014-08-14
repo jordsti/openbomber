@@ -2,8 +2,8 @@
 
 
 //constants
-const int Tile::TILE_WIDTH = 32;
-const int Tile::TILE_HEIGHT = 32;
+const int Tile::TILE_WIDTH = 48;
+const int Tile::TILE_HEIGHT = 48;
 
 Tile::Tile()
 {

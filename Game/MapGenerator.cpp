@@ -4,6 +4,7 @@
 #include <Point.h>
 #include <MPoint.h>
 #include <iostream>
+#include <TimeTools.h>
 
 using namespace StiGame;
 
@@ -17,8 +18,17 @@ MapGenerator::~MapGenerator()
     //dtor
 }
 
+
 TileMap* MapGenerator::GenerateMap(int width, int height, int nbPaths, int maxObstructions)
 {
+    int seed = Time::GenerateSeed();
+    return GenerateMap(width, height, nbPaths, maxObstructions, seed);
+}
+
+TileMap* MapGenerator::GenerateMap(int width, int height, int nbPaths, int maxObstructions, int seed)
+{
+    srand(seed);
+    std::cout << "Seed : " << seed << std::endl;
     TileMap *tmap = new TileMap(width, height);
     for(int y=0; y<tmap->getHeight(); y++)
     {
@@ -36,8 +46,7 @@ TileMap* MapGenerator::GenerateMap(int width, int height, int nbPaths, int maxOb
     {
         int start_x = 0;
         int start_y = 0;
-        int dir = rand() % 4;
-        std::cout << "dir " << dir << std::endl;
+        int dir = rand() % 6;
         int end_x = 0;
         int end_y = 0;
 
@@ -72,6 +81,20 @@ TileMap* MapGenerator::GenerateMap(int width, int height, int nbPaths, int maxOb
             start_x = width - 1;
             end_y = rand() % height;
             end_x = 0;
+        }
+        else if(dir == 4)
+        {
+            start_x = 0;
+            start_y = 0;
+            end_x = width - 1;
+            end_y = height - 1;
+        }
+        else if(dir == 5)
+        {
+            start_x = 0;
+            start_y = height - 1;
+            end_x = width - 1;
+            end_y = 0;
         }
 
         std::list<Point*> pathPts;
@@ -155,14 +178,11 @@ TileMap* MapGenerator::GenerateMap(int width, int height, int nbPaths, int maxOb
         for(;lit!=lend;++lit)
         {
             Tile *t = tmap->getTile((*lit)->getX(), (*lit)->getY());
-            std::cout << "Pt : " << (*lit)->getX() << " " << (*lit)->getY() << std::endl;
             if(nb_obs_count < maxObstructions)
             {
                 int obs = rand() % 10;
-                std::cout << "obs " << obs << std::endl;
                 if(obs > 1)
                 {
-                    std::cout << "normal tile" << std::endl;
                     t->setTileType(TT_Normal);
                 }
                 else
