@@ -1,4 +1,5 @@
 #include "MainMenuState.h"
+#include "GameState.h"
 
 using namespace StiGame;
 using namespace Gui;
@@ -33,7 +34,8 @@ void MainMenuState::handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *
 {
     if(src == &btnNewGame)
     {
-
+        GameState *gs = new GameState();
+        getViewport()->push(gs);
     }
     else if(src == &btnQuit)
     {
