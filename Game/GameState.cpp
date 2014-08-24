@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "MapGenerator.h"
 #include <Viewport.h>
+#include <iostream>
 using namespace StiGame;
 
 GameState::GameState() :
@@ -14,11 +15,6 @@ GameState::GameState() :
 
 void GameState::onPaint(SDL_Renderer *renderer)
 {
-    if(!initiated)
-    {
-        initGame();
-    }
-
     renderBackgroundMap(renderer);
 }
 
@@ -33,9 +29,9 @@ void GameState::renderBackgroundMap(SDL_Renderer *renderer)
     //int tiles_h = (height / tileMap->getTileHeight()) + 1;
     MPoint pt = MPoint();
     Sprite *spr;
-    for(int y=tile_start_x; y<tileMap->getWidth(); y++)
+    for(int y=tile_start_y; y<tileMap->getHeight(); y++)
     {
-        for(int x=tile_start_x; x<tileMap->getHeight(); x++)
+        for(int x=tile_start_x; x<tileMap->getWidth(); x++)
         {
             Tile *t = tileMap->getTile(x, y);
             pt.setPoint(x*tileMap->getTileWidth() + offset_x, y*tileMap->getTileHeight() + offset_y);
@@ -49,8 +45,15 @@ void GameState::renderBackgroundMap(SDL_Renderer *renderer)
             }
 
             spr->setPoint(&pt);
+            spr->render();
         }
     }
+}
+
+void GameState::onStart(void)
+{
+    running = true;
+    initGame();
 }
 
 void GameState::initGame(void)

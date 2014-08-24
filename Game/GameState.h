@@ -12,6 +12,7 @@ class GameState :
         GameState();
         virtual ~GameState();
         void initGame(void);
+        void onStart(void);
     protected:
         void onPaint(SDL_Renderer *renderer);
         void renderBackgroundMap(SDL_Renderer *renderer);
